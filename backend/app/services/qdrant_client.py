@@ -9,10 +9,18 @@ import google.generativeai as genai
 class QdrantService:
     def __init__(self):
         """Initialize Qdrant client"""
-        self.client = QdrantClient(
-            host=settings.QDRANT_HOST,
-            port=settings.QDRANT_PORT
-        )
+        # Handle Qdrant Cloud configuration
+        if hasattr(settings, 'QDRANT_API_KEY') and settings.QDRANT_API_KEY:
+            self.client = QdrantClient(
+                url=f"https://{settings.QDRANT_HOST}:{settings.QDRANT_PORT}" if getattr(settings, 'QDRANT_USE_HTTPS', False) else f"http://{settings.QDRANT_HOST}:{settings.QDRANT_PORT}",
+                api_key=settings.QDRANT_API_KEY,
+            )
+        else:
+            # Self-hosted Qdrant
+            self.client = QdrantClient(
+                host=settings.QDRANT_HOST,
+                port=settings.QDRANT_PORT
+            )
         
         # Initialize Gemini for embeddings
         if settings.GEMINI_API_KEY:

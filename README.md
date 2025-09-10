@@ -37,6 +37,14 @@ A complete implementation of a Revenue Leakage Detection System using CrewAI + Q
 │   ├── sample_data/
 │   ├── requirements.txt
 │   └── README.md
+├── .streamlit/
+│   ├── config.toml
+│   └── secrets.toml.example
+├── QDRANT_SETUP.md
+├── requirements.txt
+├── setup.py
+├── app.py
+├── Procfile
 └── README.md
 ```
 
@@ -67,7 +75,7 @@ A complete implementation of a Revenue Leakage Detection System using CrewAI + Q
 
 ## Getting Started
 
-### Option 1: Using Docker (Recommended)
+### Option 1: Using Docker (Recommended for Local Development)
 
 1. Build and run all services:
    ```bash
@@ -79,7 +87,7 @@ A complete implementation of a Revenue Leakage Detection System using CrewAI + Q
    - Backend API: http://localhost:8000
    - Qdrant Dashboard: http://localhost:6333/dashboard
 
-### Option 2: Manual Installation
+### Option 2: Manual Installation (Local Development)
 
 1. Install backend dependencies:
    ```bash
@@ -116,13 +124,16 @@ A complete implementation of a Revenue Leakage Detection System using CrewAI + Q
 2. Go to [Streamlit Cloud](https://streamlit.io/cloud)
 3. Create a new app and select your forked repository
 4. Set the main file path to `app.py`
-5. Add the following secrets in the Streamlit Cloud settings:
+5. **Set up Qdrant separately** (see [QDRANT_SETUP.md](QDRANT_SETUP.md) for detailed instructions)
+6. Add the following secrets in the Streamlit Cloud settings:
    ```
    GEMINI_API_KEY = "your-gemini-api-key"
-   QDRANT_HOST = "your-qdrant-host"
+   QDRANT_HOST = "your-qdrant-host"  # e.g., xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.region.aws.cloud.qdrant.io
    QDRANT_PORT = 6333
+   QDRANT_API_KEY = "your-qdrant-api-key"  # Required for Qdrant Cloud
+   QDRANT_USE_HTTPS = true  # Required for Qdrant Cloud
    ```
-6. Deploy the app
+7. Deploy the app
 
 ## Data Generator Features
 
