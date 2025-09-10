@@ -16,12 +16,26 @@ import tempfile
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 # Now we can import from app module
+IMPORT_SUCCESS = True
+IMPORT_ERRORS = []
+
 try:
     from app.utils.data_generator import DataGenerator
-    from app.utils.ocr_reader import OCRReader
-    IMPORT_SUCCESS = True
 except ImportError as e:
-    st.error(f"Import error: {e}")
+    IMPORT_ERRORS.append(f"DataGenerator: {e}")
+    IMPORT_SUCCESS = False
+
+try:
+    from app.utils.ocr_reader import OCRReader
+except ImportError as e:
+    IMPORT_ERRORS.append(f"OCRReader: {e}")
+    IMPORT_SUCCESS = False
+
+# Additional imports that might be needed
+try:
+    import cv2
+except ImportError as e:
+    IMPORT_ERRORS.append(f"OpenCV (cv2): {e}")
     IMPORT_SUCCESS = False
 
 # Set page configuration
@@ -326,11 +340,19 @@ elif page == "Data Generator":
     
     if not IMPORT_SUCCESS:
         st.error("Data generator modules not available. Please check your installation.")
+        if IMPORT_ERRORS:
+            st.write("Specific errors:")
+            for error in IMPORT_ERRORS:
+                st.write(f"- {error}")
         st.stop()
     
     # Initialize data generator
-    generator = DataGenerator()
-    ocr_reader = OCRReader()
+    try:
+        generator = DataGenerator()
+        ocr_reader = OCRReader()
+    except Exception as e:
+        st.error(f"Error initializing data generator: {e}")
+        st.stop()
     
     # Tabs for different functionalities
     tab1, tab2 = st.tabs(["Generate Sample Data", "Upload Your Data"])

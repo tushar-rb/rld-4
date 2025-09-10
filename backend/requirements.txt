@@ -13,3 +13,4 @@ pymupdf
 pytesseract
 pillow
 langchain-google-genai
+opencv-python-headless

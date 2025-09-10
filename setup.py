@@ -24,6 +24,7 @@ setup(
         "pytesseract",
         "pillow",
         "langchain-google-genai",
+        "opencv-python-headless",
     ],
     python_requires=">=3.8",
     classifiers=[
