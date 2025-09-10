@@ -1,0 +1,38 @@
+from setuptools import setup, find_packages
+
+setup(
+    name="revenue-leakage-detection",
+    version="0.1.0",
+    description="A Revenue Leakage Detection System using CrewAI + Qdrant with Gemini as LLM",
+    author="Your Name",
+    author_email="your.email@example.com",
+    packages=find_packages(where="backend"),
+    package_dir={"": "backend"},
+    install_requires=[
+        "crewai>=0.30.0",
+        "qdrant-client>=1.9.1",
+        "google-generativeai>=0.5.2",
+        "fastapi>=0.111.0",
+        "uvicorn>=0.30.1",
+        "pydantic>=2.7.1",
+        "python-dotenv>=1.0.1",
+        "typer>=0.9.0,<0.10.0",
+        "streamlit>=1.39.0",
+        "plotly>=5.24.0",
+        "fpdf2>=2.7.9",
+        "pymupdf>=1.24.10",
+        "pytesseract>=0.3.13",
+        "pillow>=10.4.0",
+        "langchain-google-genai>=2.1.5",
+    ],
+    python_requires=">=3.8",
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+    ],
+)

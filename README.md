@@ -110,6 +110,20 @@ A complete implementation of a Revenue Leakage Detection System using CrewAI + Q
    streamlit run streamlit_app/dashboard.py
    ```
 
+### Option 3: Streamlit Cloud Deployment
+
+1. Fork this repository to your GitHub account
+2. Go to [Streamlit Cloud](https://streamlit.io/cloud)
+3. Create a new app and select your forked repository
+4. Set the main file path to `app.py`
+5. Add the following secrets in the Streamlit Cloud settings:
+   ```
+   GEMINI_API_KEY = "your-gemini-api-key"
+   QDRANT_HOST = "your-qdrant-host"
+   QDRANT_PORT = 6333
+   ```
+6. Deploy the app
+
 ## Data Generator Features
 
 The Data Generator allows you to:
