@@ -11,7 +11,7 @@ setup(
     install_requires=[
         "crewai>=0.30.0",
         "qdrant-client>=1.9.1",
-        "google-generativeai>=0.5.2",
+        "google-generativeai>=0.8.5",
         "fastapi>=0.111.0",
         "uvicorn>=0.30.1",
         "pydantic>=2.7.1",
